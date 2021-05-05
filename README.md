@@ -206,11 +206,6 @@ Interface_Options="-f --no-video-title-show"
 
 # Some useful Video Filters for Special Occacions:
 
-# Rotate video filter (rotate)
-#      --rotate-angle <float [-340282346638528859811704183484516925440.000000 .. 340282346638528859811704183484516925440.000000]>
-#                                 Angle in degrees
-#          Angle in degrees (0 to 359)
-
 # Mirror video filter (mirror)
 # Splits video in two same parts, like in a mirror
 #      --mirror-split {0 (Vertical), 1 (Horizontal)}
@@ -254,6 +249,54 @@ done
 
 Also this script needs to be executable:<br>
 `sudo chmod +x /home/Script/autoplay.sh`
+
+
+# 07 - VLC Autoplay Service
+
+Finally we need to create another systemd service that runs our VLC Autoplay Script at boot:<br>
+`sudo nano /lib/systemd/system/autoplay.service`
+
+Insert:
+
+```
+[Unit]
+Description=Autoplay
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/workstation
+User=workstation
+Group=workstation
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/workstation/.Xauthority"
+Environment="XDG_RUNTIME_DIR=/run/user/1001"
+ExecStart=/bin/sh /home/workstation/Script/autoplay.sh
+
+[Install]
+WantedBy=graphical.target
+```
+
+Doublecheck if the XDG_RUNTIME_DIR is correct (if it is not correct, the script will exit with an error). It should be 1001. However, if for example it turns out to be 1002 while you are logged in as *workstation*, change your systemd service accordingly:<br>
+`su workstation`<br>
+`id -u`
+
+Finally, we enable and start the VLC autoplay service with the following commands (you need to be logged in as an administrator to execute these commands):
+
+`sudo systemctl daemon-reload`<br>
+`sudo systemctl enable autoplay.service`<br>
+`sudo systemctl start autoplay.service`
+
+If you get an error you can try:<br>
+`sudo systemctl reset-failed`
+
+Now all you have to do is to transfer one or more video files to /home/workstation/Videos/autoplay and/or insert a USB-drive that contains your files and watch the VLC Videolooper start the loop.
+
+# 08 - Links and Resources
+
+Raspberry Pi OS:
+[Download Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/)
+[Install Raspberry Pi OS](https://www.raspberrypi.org/software/)
+[Documentation Raspi-Config](https://www.raspberrypi.org/documentation/configuration/raspi-config.md)
 
 
 ## MIT License
