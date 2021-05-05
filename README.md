@@ -21,7 +21,7 @@ After the successful implementation of these instruction, when you boot your Ras
 
 - [01 - Prerequisite](#01---Prerequisite)
 - [02 - Setup unprivileged Workstation User](#02---Setup-unprivileged-Workstation-User)
-- [03 - Prepare Desktop Environment](#03---Adjust-Desktop-Environment)
+- [03 - Prepare Desktop Environment](#03---Prepare-Desktop-Environment)
 - [04 - Prepare Folders and Locations](#04---Prepare-Folders-and-Locations)
 - [05 - Setup USB Device Handler and Service](#05---Setup-USB-Device-Handler-and-Service)
 - [06 - VLC Autoplay Script](#06---VLC-Autoplay-Script)
