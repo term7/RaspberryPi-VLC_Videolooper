@@ -132,8 +132,8 @@ RemainAfterExit=yes
 ExecStart=/usr/local/bin/automount /dev/%I
 ```
 
-The executed function has to be very short, because in this configuration udev does kill longer running scripts that have been started by systemd using this udev rule. If we wanted to execute our autoplay script directly via our systemd service, it would not work.
-Thus we came up with this workaround: we use the script started by systemd when a USB drive is inserted to modify a file on our harddisk. Further we watch this file with inotify, a monitoring tool, that will in turn start our VLC-Videolooper once this file has been modified.
+The executed script has to be very short, because in this configuration udev does kill longer running scripts that have been started by systemd using this udev rule. If we executed our autoplay script directly via this systemd service, it would not work.
+Thus we came up with this workaround: we use the automount script started by systemd (when a USB drive is inserted) to modify a file on our harddisk. Further we watch this file with inotify (a monitoring tool), that will notify our VLC-Videolooper whenever this file has been modified.
 
 First we install inotify:<br>
 `sudo apt install inotify`
@@ -150,7 +150,7 @@ export mnt=/home/workstation/Script/.mnt
 find /dev/sd* | sed -n '1~2!p' | sed ':a;N;$!ba;s/\n/ /g' > "$mnt"
 ```
 
-This script writes the SCSI disk identifier of the inserted USB devices to a temporary log file (.mnt). Each time a USB device is inserted this file will be overwritten. It does not really matter what this script does with this file, as long as it modifies it so that inotify can catch the modification.
+The automount script simply writes the SCSI disk identifier of the inserted USB devices to a temporary log file (.mnt). Each time a USB device is inserted this file is overwritten. It does not matter what exactly the automount script does with this file, as long as it modifies it so that inotify notices the modification.
 
 Finally we need to make this script executable:<br>
 `sudo chmod +x /usr/local/bin/automount`
@@ -281,8 +281,10 @@ ExecStart=/bin/sh /home/workstation/Script/autoplay.sh
 WantedBy=graphical.target
 ```
 
-Doublecheck if the XDG_RUNTIME_DIR is correct (if it is not correct, the script will exit with an error). It should be 1001. However, if for example it turns out to be 1002 while you are logged in as *workstation*, change your systemd service accordingly:<br>
+Doublecheck if the XDG_RUNTIME_DIR is correct (if it is not correct, the script will exit with an error). It should be 1001. However, if for example it turns out to be 1002 while you are logged in as *workstation*, change your systemd service accordingly. Log in as workstation:<br>
 `su workstation`<br>
+
+Then doublecheck:
 `id -u`
 
 Finally, we enable and start the VLC autoplay service with the following commands (you need to be logged in as an administrator to execute these commands):
@@ -291,10 +293,10 @@ Finally, we enable and start the VLC autoplay service with the following command
 `sudo systemctl enable autoplay.service`<br>
 `sudo systemctl start autoplay.service`
 
-If you get an error you can try:<br>
+If you get an error, you can try:<br>
 `sudo systemctl reset-failed`
 
-Now all you have to do is to transfer one or more video files to /home/workstation/Videos/autoplay and/or insert a USB-drive that contains your files and watch the VLC Videolooper start the loop.
+Now, all you have to do is to transfer one or more video files to /home/workstation/Videos/autoplay and/or insert a USB-drive that contains your files and watch the VLC Videolooper start the loop.
 
 # 08 - Links and Resources
 
