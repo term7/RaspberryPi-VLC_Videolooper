@@ -197,7 +197,7 @@ Playlist_Options="-L --started-from-file --one-instance --playlist-enqueue"
 # Output Modules
 
 Video_Output="--gles2 egl_x11 --glconv mmal_converter --mmal-opaque"
-Audio_Output="--stereo-mode 2"
+Audio_Output="--stereo-mode 1"
 
 # Interface Options
 # Fullscreen, hide title display, decorations, window borders, etc.
@@ -293,10 +293,13 @@ Now all you have to do is to transfer one or more video files to /home/workstati
 
 # 08 - Links and Resources
 
-Raspberry Pi OS:
-[Download Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/)
+Raspberry Pi OS:<br>
+[Download Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/)<br>
 [Install Raspberry Pi OS](https://www.raspberrypi.org/software/)
-[Documentation Raspi-Config](https://www.raspberrypi.org/documentation/configuration/raspi-config.md)
+
+VLC:<br>
+[VLC Command Line Help](https://wiki.videolan.org/VLC_command-line_help/)
+[VLC Command Line](https://wiki.videolan.org/Documentation:Command_line/)
 
 
 ## MIT License
