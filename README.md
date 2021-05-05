@@ -24,8 +24,8 @@ After the successful implementation of these instruction, when you boot your Ras
 - [03 - Prepare Desktop Environment](#03---Adjust-Desktop-Environment)
 - [04 - Prepare Folders and Locations](#04---Prepare-Folders-and-Locations)
 - [05 - Setup USB Device Handler and Service](#05---Setup-USB-Device-Handler-and-Service)
-- [06 - The Autoplay Script](#06---Bitrate-presets-to-reduce-file-size-for-Vimeo-or-Youtube)
-- [07 - Setup Autoplay Service](#07---Setup-Autoplay-Service)
+- [06 - VLC Autoplay Script](#06---VLC-Autoplay-Script)
+- [07 - VLC Autoplay Service](#07---VLC-Autoplay-Service)
 - [08 - Links and Resources](#08---Links-and-Resources)
 
 
@@ -102,7 +102,7 @@ The last folder will be generated automatically once you insert a USB-drive. We 
 
 # 05 - Setup USB Device Handler and Service
 
-We need to enable our Videolooper to know when a USB-drive is inserted. To do so, we first define a new Udev Rule:<br>
+We need to enable our Videolooper to know when a USB-drive is inserted. To do so, we first define a new [udev rule](https://en.wikipedia.org/wiki/Udev):<br>
 `sudo nano /etc/udev/rules.d/usb_hook.rules`
 
 Insert:
@@ -110,7 +110,7 @@ Insert:
 ACTION=="add", KERNEL=="sd[a-z][0-9]", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbstick-handler@%k"
 ```
 
-Now we create a SystemD Service, that monitors when a USB device is plugged in and that defines what happens, once a USB drive is inserted. <br>
+Now we create a [systemd service](https://www.freedesktop.org/wiki/Software/systemd/), that monitors when a USB device is plugged in and that defines what happens, once a USB drive is inserted. <br>
 `sudo nano /lib/systemd/system/usbstick-handler@.service`
 
 Insert:
@@ -127,10 +127,10 @@ RemainAfterExit=yes
 ExecStart=/usr/local/bin/automount /dev/%I
 ```
 
-The executed function has to be very short, because udev does kill longer running scripts that have been started by a udev rule. If we wanted to execute our autoplay script directly via this SystemD service, it would not work.
-Thus we came up with this workaround: we use our function to modify a file on our harddisk. Further we watch this file with *inotify*, another monitoring tool, that will in turn start our VLC-Videolooper once this file has been modified.
+The executed function has to be very short, because udev does kill longer running scripts that have been started by a udev rule. If we wanted to execute our autoplay script directly via this systemd service, it would not work.
+Thus we came up with this workaround: we use our function to modify a file on our harddisk. Further we watch this file with inotify, another monitoring tool, that will in turn start our VLC-Videolooper once this file has been modified.
 
-First we install *inotify*:<br>
+First we install inotify:<br>
 `sudo apt install inotify`
 
 Then we create our short function:<br>
@@ -144,6 +144,25 @@ Insert:
 export mnt=/home/workstation/Script/.mnt
 find /dev/sd* | sed -n '1~2!p' | sed ':a;N;$!ba;s/\n/ /g' > "$mnt"
 ```
+
+This simple function just writes the SCSI disk identifier of the inserted USB devices to a temporary log file (.mnt). Each time a USB device is inserted this file will be overwritten.
+
+Finally we need to make this script executable:<br>
+`sudo chmod +x /usr/local/bin/automount`
+
+
+# 06 - VLC Autoplay Script
+
+Now we create the actual script that uses inotify as a trigger, creates a playlist and launches VLC to play the loop. In this script you can define all paramaters and all options that the [VLC command line](https://wiki.videolan.org/VLC_command-line_help/) has to offer. For example: we only want to play MP4, MOV and MKV files. What if you want to play an AVI? Just edit this script and add it to the list of filetypes that you want to play. Perhaps you want to rotate the video in your screen, mute the video or play a slideshow of images instead? Here you can add the required parameters. There are a lot of possibilities:
+
+`sudo nano /home/workstation/autoplay.sh`
+
+Insert:
+
+```
+
+```
+
 
 ## MIT License
 
