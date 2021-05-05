@@ -35,7 +35,7 @@ Playlist_Options="-L --started-from-file --one-instance --playlist-enqueue"
 # Output Modules
 
 Video_Output="--gles2 egl_x11 --glconv mmal_converter --mmal-opaque"
-Audio_Output="--stereo-mode 5 --force-dolby-surround 1"
+Audio_Output="--stereo-mode 1"
 
 # Interface Options
 # Fullscreen, hide title display, decorations, window borders, etc.
@@ -43,11 +43,6 @@ Audio_Output="--stereo-mode 5 --force-dolby-surround 1"
 Interface_Options="-f --no-video-title-show"
 
 # Some useful Video Filters for Special Occacions:
-
-# Rotate video filter (rotate)
-#      --rotate-angle <float [-340282346638528859811704183484516925440.000000 .. 340282346638528859811704183484516925440.000000]>
-#                                 Angle in degrees
-#          Angle in degrees (0 to 359)
 
 # Mirror video filter (mirror)
 # Splits video in two same parts, like in a mirror
