@@ -1,0 +1,15 @@
+[Unit]
+Description=Autoplay
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/workstation
+User=workstation
+Group=workstation
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/workstation/.Xauthority"
+Environment="XDG_RUNTIME_DIR=/run/user/1001"
+ExecStart=/bin/sh /home/workstation/Script/autoplay.sh
+
+[Install]
+WantedBy=graphical.target
