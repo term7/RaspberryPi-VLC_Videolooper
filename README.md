@@ -8,6 +8,9 @@ This Videolooper is designed to use the commandline interface of the VLC Player,
 This Videolooper has been tested on the Raspberry Pi 2B, 3B, 3B+ and 4B.
 To setup this Videolooper, follow these instuctions step by step. Feel free to make your own adjustments according to your own needs.
 
+In future we might write a script that does the whole setup automatically. However we think it is fun to learn, which is why we decided to write a detailed guide instead.
+;-)
+
 
 ### WHAT THIS VIDEOLOOPER DOES:
 
@@ -33,10 +36,11 @@ We recommend you work with a clean install of [Raspberry Pi OS](https://www.rasp
 
 # 02 - Setup unprivileged Workstation User
 
-We have been using this Videolooper on a Raspberry Pi that had to be reachable via SSH over the internet, which is why we set up an unprivileged user account called *workstation* to run our autoplay script.
-But first we grant our new user also admin rights. This makes it easy to change all required settings, so in future our Raspberry Pi will automatically log in as *workstation*. We will revoke admin rights later.
+We have been using this Videolooper on a Raspberry Pi that had to be reachable via SSH over the internet, which is why we set up an unprivileged user account called *workstation* to run our autoplay script. But first we grant our new user also admin rights. This makes it easy to change all required settings, so in future our Raspberry Pi will automatically log in as *workstation*. We will revoke admin rights later.
 
-To create this user with all privileges, log into your Raspberry Pi via SSH and execute the following commands (you will be asked to create a password for your new user):
+SIDE NOTE: This is a security related precaution and we strongly recommend you run the Vidolooper in an unprivileged user account if your Raspberry Pi is exposed to the internet. Then you should also consider to set up a firewall and to harden your SSH login configuration. 
+
+To create the user *workstation* with all privileges, log into your Raspberry Pi via SSH and execute the following commands (you will be asked to create a password for your new user):
 
 `sudo adduser workstation`<br>
 `sudo usermod -a -G adm,tty,pi,dialout,cdrom,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi,sudo workstation`
@@ -71,6 +75,7 @@ Reboot your Raspberry Pi. You should now still be logged into your desktop envir
 To douple-check that the group *sudo* is missing from the list of groups run this command in a terminal window:<br>
 `groups workstation`
 
+
 # 03 - Prepare Desktop Environment
 
 VLC briefly shows the desktop when it reloads the playlist loop, which is why we want to hide all elements that are present on the desktop.
@@ -80,8 +85,45 @@ There are several settings that you can change:
 - Right-click on the desktop to change the desktop settings. Select no background as desktop background and change the background color to black. Also hide all items that are visible on your desktop (i.e. untick the option that shows the Wastebasket, USB Drives, etc.)
 - Open the file manager and in its advanced settings disable all popup notifications for when a USB drive is inserted
 - To automatically hide the mouse cursor log into you admin account *pi* and install unclutter:<br>
+`su - pi`<br>
 `sudo apt install unclutter`
 
+
+# 04 - Prepare Folders and Locations
+
+Most steps during the following setup require admin rights, which is why you should remain logged in as an admin user. Some folders that we use as locations for our Videolooper do not exist after a fresh installation of Raspberry Pi OS. We need to create them:
+
+`mkdir /home/workstation/Videos/autoplay`<br>
+`mkdir /home/workstation/Script`<br>
+`mkdir /media/workstation`
+
+The last folder will be generated automatically once you insert a USB-drive. We only create this folder manually to avoid an error in case you don't insert a USB-drive before the Videolooper is started for the first time.
+
+
+# 05 - Setup USB Stick Handler and Service
+
+We need to enable our Videolooper to know when a USB-drive is inserted. To do so we set a new Udev Rule:<br>
+`sudo nano /etc/udev/rules.d/usb_hook.rules`
+
+Insert:<br>
+`ACTION=="add", KERNEL=="sd[a-z][0-9]", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbstick-handler@%k"`
+
+Then we create the required SystemD service:<br>
+`sudo nano /lib/systemd/system/usbstick-handler@.service`
+
+Insert:
+
+```
+[Unit]
+Description=Mount USB sticks
+BindsTo=dev-%i.device
+After=dev-%i.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/automount /dev/%I
+```
 
 
 ## MIT License
