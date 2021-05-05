@@ -41,15 +41,15 @@ To create this user with all privileges, log into your Raspberry Pi via SSH and 
 `sudo adduser workstation`<br>
 `sudo usermod -a -G adm,tty,pi,dialout,cdrom,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi,sudo workstation`
 
-Then log into your new user account:
+Then log into your new user account:<br>
 `su - workstation`
 
-Once you are logged in, change the autologin settings in */etc/lightdm/lightdm.conf*:
+Once you are logged in, change the autologin settings in */etc/lightdm/lightdm.conf*:<br>
 `sudo nano /etc/lightdm/lightdm.conf`
 
 Find the line that says `autologin-user=pi` and change it to `autologin-user=workstation`
 
-Also change `pi` to `workstation` in  */etc/systemd/system/autologin@.service*:
+Also change `pi` to `workstation` in  */etc/systemd/system/autologin@.service*:<br>
 `sudo nano /etc/systemd/system/autologin@.service`
 
 Finally to make absolutely sure your new user will be logged in on boot run:
@@ -68,7 +68,7 @@ To revoke admin rights for *workstation* execute the following command:<br>
 
 Reboot your Raspberry Pi. You should now still be logged into your desktop environment as *workstation*.
 
-To douple-check that the group `sudo` is missing from the list of groups run this command in a terminal window:<br>
+To douple-check that the group `sudo` is missing from the list of groups run this command in a terminal window:<br><br>
 `groups workstation`
 
 # 03 - Prepare Desktop Environment
