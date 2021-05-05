@@ -18,18 +18,12 @@ After the successful implementation of these instruction, when you boot your Ras
 
 - [01 - Prerequisite](#01---Prerequisite)
 - [02 - Setup unprivileged Workstation User](#02---Setup-unprivileged-Workstation-User)
-- [03 - Prepare Folders and Locations](#03---Prepare-Folders-and-Locations)
-
-- [03 - Prepare Folders and Locations](#03---Prepare-Folders-and-Locations)
-
-- [03 - Prepare Folders and Locations](#03---Prepare-Folders-and-Locations)
-
-- [03 - Prepare Folders and Locations](#03---Prepare-Folders-and-Locations)
-
-- [04 - Setup USB Stick Handler and Service](#04---Setup-Autoplay-Service)
-- [05 - The Autoplay Script](#05---Bitrate-presets-to-reduce-file-size-for-Vimeo-or-Youtube)
-- [06 - Setup Autoplay Service](#06---Setup-Autoplay-Service)
-- [07 - Links and Resources](#07---Links-and-Resources)
+- [03 - Prepare Desktop Environment](#03---Adjust-Desktop-Environment)
+- [04 - Prepare Folders and Locations](#04---Prepare-Folders-and-Locations)
+- [05 - Setup USB Stick Handler and Service](#05---Setup-Autoplay-Service)
+- [06 - The Autoplay Script](#06---Bitrate-presets-to-reduce-file-size-for-Vimeo-or-Youtube)
+- [07 - Setup Autoplay Service](#07---Setup-Autoplay-Service)
+- [08 - Links and Resources](#08---Links-and-Resources)
 
 
 # 01 - Prerequisite
@@ -50,36 +44,45 @@ To create this user with all privileges, log into your Raspberry Pi via SSH and 
 Then log into your new user account:
 `su - workstation`
 
-Once you are logged in, change the autologin settings in `/etc/lightdm/lightdm.conf`:
+Once you are logged in, change the autologin settings in */etc/lightdm/lightdm.conf*:
 `sudo nano /etc/lightdm/lightdm.conf`
 
 Find the line that says `autologin-user=pi` and change it to `autologin-user=workstation`
 
-Also change `pi` to `workstation` in  `/etc/systemd/system/autologin@.service`
+Also change `pi` to `workstation` in  */etc/systemd/system/autologin@.service*:
 `sudo nano /etc/systemd/system/autologin@.service`
 
 Finally to make absolutely sure your new user will be logged in on boot run:
 
 `sudo raspi-config`
 
-Navigate to `1 System Options` and select `Boot / Auto login`. Make sure you select user *workstation* to automatically log into desktop.
+Navigate to *1 System Options* and select *Boot / Auto login*. Make sure you select user *workstation* to automatically log into desktop.
 Please note that [raspi-config](https://www.raspberrypi.org/documentation/configuration/raspi-config.md) is constantly being developed. The location of the required menu item might change!
 Then, reboot your Raspberry Pi. You should now be logged into your desktop environment as *workstation*.
 
-Finally, either log again into your Raspberry Pi via SSH, or use a terminal window to log into the *pi* user account:
+Finally, either log again into your Raspberry Pi via SSH, or use a terminal window to log into the *pi* user account:<br>
 `su - pi`
 
-To revoke admin rights for *workstation* execute the following command:
+To revoke admin rights for *workstation* execute the following command:<br>
 `sudo usermod -a -G adm,tty,pi,dialout,cdrom,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi workstation`
 
 Reboot your Raspberry Pi. You should now still be logged into your desktop environment as *workstation*.
 
-To douple-check that the group `sudo` is missing from the list of groups run this command in a terminal window:
+To douple-check that the group `sudo` is missing from the list of groups run this command in a terminal window:<br>
 `groups workstation`
 
-# 04 - Prepare Folders and Locations
+# 03 - Prepare Desktop Environment
 
-We like to setup our 
+VLC briefly shows the desktop when it reloads the playlist loop, which is why we want to hide all elements that are present on the desktop.
+There are several settings that you can change:
+
+- Right-click on the top menubar and change the settings to autohide the menubar. Also change its size to 0px (2px is set as default, which will be visible as a thin line on top of your screen)
+- Right-click on the desktop to change the desktop settings. Select no background as desktop background and change the background color to black. Also hide all items that are visible on your desktop (i.e. untick the option that shows the Wastebasket, USB Drives, etc.)
+- Open the file manager and in its advanced settings disable all popup notifications for when a USB drive is inserted
+
+To automatically hide the mouse cursor log into you admin account (*pi*) and install unclutter:
+`sudo apt install unclutter`
+
 
 
 ## MIT License
