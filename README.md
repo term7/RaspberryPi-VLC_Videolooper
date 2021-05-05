@@ -1,4 +1,4 @@
-# RaspberrPi VLC_Videolooper
+# RaspberryPi VLC_Videolooper
 *Videolooper based on VLC for the Raspberry Pi*
 
 ## INTRODUCTION
