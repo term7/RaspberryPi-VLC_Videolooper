@@ -102,7 +102,7 @@ The last folder will be generated automatically once you insert a USB-drive. We 
 
 # 05 - Setup USB Device Handler and Service
 
-We need to enable our Videolooper to know when a USB-drive is inserted. To do so, we first define a new [udev rule](https://en.wikipedia.org/wiki/Udev):<br>
+We need to enable our Videolooper to know when a USB-drive is inserted. To do so, we first define a new [udev](https://en.wikipedia.org/wiki/Udev) rule:<br>
 `sudo nano /etc/udev/rules.d/usb_hook.rules`
 
 Insert:
