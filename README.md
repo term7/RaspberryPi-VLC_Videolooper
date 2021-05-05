@@ -33,6 +33,10 @@ After the successful implementation of these instruction, when you boot your Ras
 
 We recommend you work with a clean install of [Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/) with desktop (without recommended software, unless you intend to use it). You could also start with a minimal installation of Raspberry Pi OS Lite. However, some additional packages that are not covered in this guide will have to be installed for this Videolooper to work on Raspberry Pi OS Lite.
 
+Before you start doing anything else, you should log in (we prefer [ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/)) and update your installation:
+
+`sudo apt update && sudo apt upgrade`
+
 
 # 02 - Setup unprivileged Workstation User
 
@@ -298,7 +302,8 @@ Download and install Raspberry Pi OS:<br>
 [https://www.raspberrypi.org/software/](https://www.raspberrypi.org/software/)
 
 Raspberry Pi Security:<br>
-[https://www.raspberrypi.org/documentation/configuration/security.md](https://www.raspberrypi.org/documentation/configuration/security.md)
+[https://www.raspberrypi.org/documentation/configuration/security.md](https://www.raspberrypi.org/documentation/configuration/security.md)<br>
+[https://raspberrytips.com/security-tips-raspberry-pi/](https://raspberrytips.com/security-tips-raspberry-pi/)
 
 VLC Command Line:<br>
 [https://wiki.videolan.org/VLC_command-line_help/](https://wiki.videolan.org/VLC_command-line_help/)<br>
