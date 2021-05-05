@@ -1,5 +1,5 @@
-# RaspberrPi_VLC_Videolooper
-*A Videolooper based on VLC for the Raspberry Pi*
+# RaspberrPi VLC_Videolooper
+*Videolooper based on VLC for the Raspberry Pi*
 
 ## INTRODUCTION
 
@@ -293,13 +293,13 @@ Now all you have to do is to transfer one or more video files to /home/workstati
 
 # 08 - Links and Resources
 
-Raspberry Pi OS:<br>
-[Download Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/)<br>
-[Install Raspberry Pi OS](https://www.raspberrypi.org/software/)
+Download and install Raspberry Pi OS:<br>
+[https://www.raspberrypi.org/software/operating-systems/](https://www.raspberrypi.org/software/operating-systems/)<br>
+[https://www.raspberrypi.org/software/](https://www.raspberrypi.org/software/)
 
-VLC:<br>
-[VLC Command Line Help](https://wiki.videolan.org/VLC_command-line_help/)
-[VLC Command Line](https://wiki.videolan.org/Documentation:Command_line/)
+VLC Command Line:<br>
+[https://wiki.videolan.org/VLC_command-line_help/](https://wiki.videolan.org/VLC_command-line_help/)<br>
+[https://wiki.videolan.org/Documentation:Command_line/](https://wiki.videolan.org/Documentation:Command_line/)
 
 
 ## MIT License
