@@ -81,9 +81,9 @@ To douple-check that the group *sudo* is missing from the list of groups run thi
 VLC briefly shows the desktop when it reloads the playlist loop, which is why we want to hide all elements that are present on the desktop.
 There are several settings that you can change:
 
-- Right-click on the top menubar and change the settings to autohide the menubar. Also change its size to 0px (2px is set as default, which will be visible as a thin line on top of your screen)
-- Right-click on the desktop to change the desktop settings. Select no background as desktop background and change the background color to black. Also hide all items that are visible on your desktop (i.e. untick the option that shows the Wastebasket, USB Drives, etc.)
-- Open the file manager and in its advanced settings disable all popup notifications for when a USB drive is inserted
+- Right-click on the top *menubar* and change the settings to autohide the menubar. Also change its size to 0px (2px is set as default, which will be visible as a thin line on top of your screen)
+- Right-click on the *desktop* to change the desktop settings. Select no background as desktop background and change the background color to black. Also hide all items that are visible on your desktop (i.e. untick the option that shows the Wastebasket, USB Drives, etc.)
+- Open the *file manager* and in its advanced settings disable all popup notifications for when a USB drive is inserted
 - To automatically hide the mouse cursor log into you admin account *pi* and install unclutter:<br>
 `su - pi`<br>
 `sudo apt install unclutter`
@@ -97,7 +97,7 @@ Most steps during the following setup require admin rights, which is why you sho
 `mkdir /home/workstation/Script`<br>
 `mkdir /media/workstation`
 
-The last folder will be generated automatically once you insert a USB-drive. We only create this folder manually to avoid an error in case you don't insert a USB-drive before the Videolooper is started for the first time.
+The last folder will be generated automatically once you insert a USB-drive while you are logged in as *workstation*. We only create this folder manually to avoid an error in case you don't insert a USB-drive before the Videolooper is started for the first time.
 
 
 # 05 - Setup USB Device Handler and Service
