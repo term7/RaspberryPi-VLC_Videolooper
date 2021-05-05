@@ -68,7 +68,7 @@ To revoke admin rights for *workstation* execute the following command:<br>
 
 Reboot your Raspberry Pi. You should now still be logged into your desktop environment as *workstation*.
 
-To douple-check that the group `sudo` is missing from the list of groups run this command in a terminal window:<br><br>
+To douple-check that the group *sudo* is missing from the list of groups run this command in a terminal window:<br>
 `groups workstation`
 
 # 03 - Prepare Desktop Environment
@@ -79,8 +79,7 @@ There are several settings that you can change:
 - Right-click on the top menubar and change the settings to autohide the menubar. Also change its size to 0px (2px is set as default, which will be visible as a thin line on top of your screen)
 - Right-click on the desktop to change the desktop settings. Select no background as desktop background and change the background color to black. Also hide all items that are visible on your desktop (i.e. untick the option that shows the Wastebasket, USB Drives, etc.)
 - Open the file manager and in its advanced settings disable all popup notifications for when a USB drive is inserted
-
-To automatically hide the mouse cursor log into you admin account (*pi*) and install unclutter:
+- To automatically hide the mouse cursor log into you admin account *pi* and install unclutter:<br>
 `sudo apt install unclutter`
 
 
