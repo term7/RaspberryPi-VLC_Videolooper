@@ -38,7 +38,7 @@ We recommend you work with a clean install of [Raspberry Pi OS](https://www.rasp
 
 We have been using this Videolooper on a Raspberry Pi that had to be reachable via SSH over the internet, which is why we set up an unprivileged user account called *workstation* to run our autoplay script. But first we grant our new user also admin rights. This makes it easy to change all required settings, so in future our Raspberry Pi will automatically log in as *workstation*. We will revoke admin rights later.
 
-SIDE NOTE: This is a security related precaution and we strongly recommend you run the Vidolooper in an unprivileged user account if your Raspberry Pi is exposed to the internet. Then you should also consider to set up a firewall and to harden your SSH login configuration. 
+SIDE NOTE: This is a [security](https://www.raspberrypi.org/documentation/configuration/security.md) related precaution and we strongly recommend you run the Vidolooper in an unprivileged user account if your Raspberry Pi is exposed to the internet. Then you should also consider to set up a firewall and to harden your SSH login configuration. 
 
 To create the user *workstation* with all privileges, log into your Raspberry Pi via SSH and execute the following commands (you will be asked to create a password for your new user):
 
@@ -296,6 +296,9 @@ Now all you have to do is to transfer one or more video files to /home/workstati
 Download and install Raspberry Pi OS:<br>
 [https://www.raspberrypi.org/software/operating-systems/](https://www.raspberrypi.org/software/operating-systems/)<br>
 [https://www.raspberrypi.org/software/](https://www.raspberrypi.org/software/)
+
+Raspberry Pi Security:<br>
+[https://www.raspberrypi.org/documentation/configuration/security.md](https://www.raspberrypi.org/documentation/configuration/security.md)
 
 VLC Command Line:<br>
 [https://wiki.videolan.org/VLC_command-line_help/](https://wiki.videolan.org/VLC_command-line_help/)<br>
