@@ -23,7 +23,7 @@ After the successful implementation of these instruction, when you boot your Ras
 - [02 - Setup unprivileged Workstation User](#02---Setup-unprivileged-Workstation-User)
 - [03 - Prepare Desktop Environment](#03---Adjust-Desktop-Environment)
 - [04 - Prepare Folders and Locations](#04---Prepare-Folders-and-Locations)
-- [05 - Setup USB Stick Handler and Service](#05---Setup-Autoplay-Service)
+- [05 - Setup USB Device Handler and Service](#05---Setup-USB-Device-Handler-and-Service)
 - [06 - The Autoplay Script](#06---Bitrate-presets-to-reduce-file-size-for-Vimeo-or-Youtube)
 - [07 - Setup Autoplay Service](#07---Setup-Autoplay-Service)
 - [08 - Links and Resources](#08---Links-and-Resources)
@@ -100,15 +100,17 @@ Most steps during the following setup require admin rights, which is why you sho
 The last folder will be generated automatically once you insert a USB-drive. We only create this folder manually to avoid an error in case you don't insert a USB-drive before the Videolooper is started for the first time.
 
 
-# 05 - Setup USB Stick Handler and Service
+# 05 - Setup USB Device Handler and Service
 
-We need to enable our Videolooper to know when a USB-drive is inserted. To do so we set a new Udev Rule:<br>
+We need to enable our Videolooper to know when a USB-drive is inserted. To do so, we first define a new Udev Rule:<br>
 `sudo nano /etc/udev/rules.d/usb_hook.rules`
 
-Insert:<br>
-`ACTION=="add", KERNEL=="sd[a-z][0-9]", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbstick-handler@%k"`
+Insert:
+```
+ACTION=="add", KERNEL=="sd[a-z][0-9]", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbstick-handler@%k"
+```
 
-Then we create the required SystemD service:<br>
+Now we create a SystemD Service, that monitors when a USB device is plugged in and that defines what happens, once a USB drive is inserted. <br>
 `sudo nano /lib/systemd/system/usbstick-handler@.service`
 
 Insert:
@@ -125,6 +127,23 @@ RemainAfterExit=yes
 ExecStart=/usr/local/bin/automount /dev/%I
 ```
 
+The executed function has to be very short, because udev does kill longer running scripts that have been started by a udev rule. If we wanted to execute our autoplay script directly via this SystemD service, it would not work.
+Thus we came up with this workaround: we use our function to modify a file on our harddisk. Further we watch this file with *inotify*, another monitoring tool, that will in turn start our VLC-Videolooper once this file has been modified.
+
+First we install *inotify*:<br>
+`sudo apt install inotify`
+
+Then we create our short function:<br>
+`sudo nano /usr/local/bin/automount`
+
+Insert:
+
+```
+#!/bin/bash
+
+export mnt=/home/workstation/Script/.mnt
+find /dev/sd* | sed -n '1~2!p' | sed ':a;N;$!ba;s/\n/ /g' > "$mnt"
+```
 
 ## MIT License
 
