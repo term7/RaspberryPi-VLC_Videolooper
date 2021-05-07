@@ -160,7 +160,7 @@ Finally we need to make this script executable:<br>
 
 Now we create the actual script that uses inotify as a trigger, creates a playlist and launches VLC to play the loop. In this script you can define all paramaters and all options that the [VLC command line](https://wiki.videolan.org/VLC_command-line_help/) has to offer. For example: we only want to play MP4, MOV and MKV files. What if you want to play an AVI? Just edit this script and add it to the list of filetypes that you want to play. Perhaps you want to rotate the video in your screen, mute the video or play a slideshow of images instead? Here you can add the required parameters. There are a lot of possibilities:
 
-`sudo nano /home/workstation/autoplay.sh`
+`sudo nano /home/workstation/Script/autoplay.sh`
 
 Insert:
 
@@ -253,7 +253,7 @@ done
 ```
 
 Also this script needs to be executable:<br>
-`sudo chmod +x /home/Script/autoplay.sh`
+`sudo chmod +x /home/workstation/Script/autoplay.sh`
 
 
 # 07 - VLC Autoplay Service
