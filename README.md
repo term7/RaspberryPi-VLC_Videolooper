@@ -100,7 +100,7 @@ Most steps during the following setup require admin rights, which is why you sho
 
 `mkdir /home/workstation/Videos/autoplay`<br>
 `mkdir /home/workstation/Script`<br>
-`mkdir /media/workstation`
+`sudo mkdir /media/workstation`
 
 The last folder will be generated automatically once you insert a USB-drive while you are logged in as *workstation*. We only create this folder manually to avoid an error in case you don't insert a USB-drive before the Videolooper is started for the first time.
 
@@ -136,7 +136,7 @@ The executed script has to be very short, because in this configuration udev doe
 Thus we came up with this workaround: we use the automount script started by systemd (when a USB drive is inserted) to modify a file on our harddisk. Further we watch this file with inotify (a monitoring tool), that will notify our VLC-Videolooper whenever this file has been modified.
 
 First we install inotify:<br>
-`sudo apt install inotify`
+`sudo apt install inotify-tools`
 
 Then we create our short script:<br>
 `sudo nano /usr/local/bin/automount`
