@@ -198,6 +198,8 @@ Playlist_Options="-L --started-from-file --one-instance --playlist-enqueue"
 #                                 (default disabled)
 #          When using the one instance only option, enqueue items to playlist
 #          and keep playing current item.
+#      --random
+#                                 Play files randomly
 
 # Output Modules
 
