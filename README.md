@@ -1,9 +1,9 @@
 # RaspberryPi VLC_Videolooper
-*Videolooper based on VLC for the Raspberry Pi*
+*Videolooper based on VLC for the Raspberry Pi - Debian10 (Buster)*
 
 ## INTRODUCTION
 
-This Videolooper is designed to use the commandline interface of the VLC Player, which is included in the standard installation of Raspberry Pi OS. In the past VLC did not support hardware acceleratinon on the Raspberry Pi, which is why older Videolooper Projects for the Raspberry Pi use the OMXplayer instead. However this has changed. Harware acceleration and VLC is not an issue anmore, which is why we decided to develop a Videolooper based on VLC for the Raspberry Pi.
+This Videolooper is designed to use the commandline interface of the VLC Player, which is included in the standard installation of Raspberry Pi OS, Debian 10 (Buster). In the past VLC did not support hardware acceleratinon on the Raspberry Pi, which is why older Videolooper Projects for the Raspberry Pi use the OMXplayer instead. However this has changed. Harware acceleration and VLC is not an issue anmore, which is why we decided to develop a Videolooper based on VLC for the Raspberry Pi.
 
 This Videolooper has been tested on the Raspberry Pi 2B, 3B, 3B+ and 4B.
 To setup this Videolooper, follow these instuctions step by step. Feel free to make your own adjustments according to your own needs.
