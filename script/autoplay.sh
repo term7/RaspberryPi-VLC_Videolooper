@@ -3,85 +3,37 @@
 # VLC OPTIONS:
 # View all possible options: vlc -H
 
-# Specify file paths and playlist location to be used for playback
-export USB=/media/workstation
-export AUTOPLAY=/home/workstation/Videos/autoplay
-export PLAYLIST=/home/workstation/Videos/autoplay/playlist.m3u
-export mnt=/home/workstation/Script/.mnt
+export AUTOPLAY=/home/looper/Videos/autoplay
+export USB=/media/
+export PLAYLIST=/home/looper/Videos/playlist.m3u
+
+# Video Filetypes (you can add more filetypes):
 
 FILETYPES="-name *.mp4 -o -name *.mov -o -name *.mkv"
 
-# Playlist Options
-
+# Playlist Options:
 Playlist_Options="-L --started-from-file --one-instance --playlist-enqueue"
 
-#Additional Playlist Options
+# Output Modules (edit and uncomment to add more options):
+#Video_Output=--gles2 egl_x11 --glconv mmal_converter --mmal-opaque
 
-#      --one-instance, --no-one-instance
-#                                 Allow only one running instance
-#                                 (default disabled)
-#          Allowing only one running instance of VLC can sometimes be useful,
-#          for example if you associated VLC with some media types and you don't
-#          want a new instance of VLC to be opened each time you open a file in
-#          your file manager. This option will allow you to play the file with
-#          the already running instance or enqueue it.
-#      --playlist-enqueue, --no-playlist-enqueue
-#                                 Enqueue items into playlist in one instance
-#                                 mode
-#                                 (default disabled)
-#          When using the one instance only option, enqueue items to playlist
-#          and keep playing current item.
+Audio_Output=--stereo-mode 1
 
-# Output Modules
+# Interface Options:
+Interface_Options="-f --loop --no-video-title-show"
 
-Video_Output="--gles2 egl_x11 --glconv mmal_converter --mmal-opaque"
-Audio_Output="--stereo-mode 1"
 
-# Interface Options
-# Fullscreen, hide title display, decorations, window borders, etc.
+# Create Playlist File
+# COMMENT: change sleep to 3 if you only want to play from the internal disk to start playback earlier, 25 is only necessary in order to find the USB drive after the Pi boots up, because otherwise the script may start before the USB drive is mounted and no files will be added from USB!
 
-Interface_Options="-f --no-video-title-show"
+sleep 25
+echo "#EXTM3U" > "$PLAYLIST"
+find "$AUTOPLAY" ! -iname ".*" -type f \( $FILETYPES \)  >> "$PLAYLIST"
+find "$USB" ! -iname ".*" -type f \( $FILETYPES \)  >> "$PLAYLIST"
+sleep 1
 
-# Some useful Video Filters for Special Occacions:
+# If Playlist exists, play Playlist
 
-# Mirror video filter (mirror)
-# Splits video in two same parts, like in a mirror
-#      --mirror-split {0 (Vertical), 1 (Horizontal)}
-#                                 Mirror orientation
-#          Defines orientation of the mirror splitting. Can be vertical or
-#          horizontal.
-#      --mirror-direction {0 (Left to right/Top to bottom), 1 (Right to left/Bottom to top)}
-#                                 Direction
-#          Direction of the mirroring.
-
-#VLC AUTOMATIC FULLSCREEN LOOP:
-
-# When a USB is plugged in at startup or before the Raspberry Pi is booted, Inotify is not yet ready to notice
-# filechanges in the watchfile, which is why we run an see if there are playable files once  at boot and start
-# the watch script afterwards:
-
-sleep 10;
-echo "#EXTM3U" > "$PLAYLIST";
-find "$USB" -type f \( $FILETYPES \)  >> "$PLAYLIST";
-find "$AUTOPLAY" -type f \( $FILETYPES \)  >> "$PLAYLIST";
-sed -i '/\/\./d' "$PLAYLIST";
-sed -i '2,$s/^/file:\/\//' "$PLAYLIST";
-sleep 0.1;
-if [ "$(wc -l < /home/workstation/Videos/autoplay/playlist.m3u )" != "1" ]; then
-    /usr/bin/cvlc -q $Video_Output $Audio_Output $Interface_Options $Playlist_Options "$PLAYLIST"
+if [ "$(wc -l < /home/looper/Videos/playlist.m3u )" != "1" ]; then
+    /usr/bin/vlc -I dummy -q $Video_Output $Audio_Output $Interface_Options $Playlist_Options "$PLAYLIST"
 fi
-
-# Start WatchScript:
-
-while /usr/bin/inotifywait -e modify "$mnt"; do
-    sleep 10;
-    echo "#EXTM3U" > "$PLAYLIST";
-    find "$USB" -type f \( $FILETYPES \)  >> "$PLAYLIST";
-    find "$AUTOPLAY" -type f \( $FILETYPES \)  >> "$PLAYLIST";
-    sed -i '/\/\./d' "$PLAYLIST";
-    sed -i '2,$s/^/file:\/\//' "$PLAYLIST";
-    sleep 0.1;
-    if [ "$(wc -l < /home/workstation/Videos/autoplay/playlist.m3u )" != "1" ]; then
-        /usr/bin/cvlc -q $Video_Output $Audio_Output $Interface_Options $Playlist_Options "$PLAYLIST"
-    fi
-done

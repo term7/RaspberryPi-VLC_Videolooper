@@ -3,13 +3,11 @@ Description=Autoplay
 After=multi-user.target
 
 [Service]
-WorkingDirectory=/home/workstation
-User=workstation
-Group=workstation
+WorkingDirectory=/home/looper     
+User=looper
+Group=looper
 Environment="DISPLAY=:0"
-Environment="XAUTHORITY=/home/workstation/.Xauthority"
-Environment="XDG_RUNTIME_DIR=/run/user/1001"
-ExecStart=/bin/sh /home/workstation/Script/autoplay.sh
+ExecStart=/bin/sh /home/looper/Script/autoplay.sh
 
 [Install]
-WantedBy=graphical.target
+WantedBy=multi-user.target

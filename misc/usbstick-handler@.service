@@ -1,9 +1,9 @@
 [Unit]
-Description=Mount USB sticks
+Description=Automount
 BindsTo=dev-%i.device
 After=dev-%i.device
 
 [Service]
 Type=oneshot
-RemainAfterExit=yes
-ExecStart=/usr/local/bin/automount /dev/%I
+ExecStart=/home/admin/script/automount/usbmount /dev/%I
+ExecStop=/usr/bin/pmount /dev/%I
