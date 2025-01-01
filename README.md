@@ -255,7 +255,7 @@ Prepare some files on a USB media storage and/or use this command to transfer a 
 When the file transfer is finished, shutdown your Raspberry Pi. Then attach a screen to your Pi's HDMI port, place some video files on a USB media storage and plug it into your Raspberry Pi (if you want you can also just play from the internal autoplay folder). Connect power to boot it. After a short while it should automatically loop the video you transferred to the autoplay folder and/or the files on your USB media storage.
 
 
-# 08 - Links and Resources
+# 07 - Links and Resources
 
 Download and install Raspberry Pi OS:<br>
 [https://www.raspberrypi.org/software/operating-systems/](https://www.raspberrypi.org/software/operating-systems/)<br>
