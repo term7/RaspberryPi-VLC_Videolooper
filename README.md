@@ -18,7 +18,7 @@ After the successful implementation of these instruction, when you boot your Ras
 
 ## SETUP
 
-- [01 Prerequisites](#01-Prerequisites)
+- ["01 - Prerequisites"](#01---Prerequisites)
 - [02 - Setup unprivileged Workstation User](#02---Setup-unprivileged-Workstation-User)
 - [03 - Prepare Folders and Locations](#03---Prepare-Folders-and-Locations)
 - [04 - Setup USB Device Handler and Service](#04---Setup-USB-Device-Handler-and-Service)
@@ -27,7 +27,7 @@ After the successful implementation of these instruction, when you boot your Ras
 - [07 - Links and Resources](#07---Links-and-Resources)
 
 
-# 01 Prerequisites
+# 01 - Prerequisites
 
 We recommend you work with a clean and fully updated installation of [Raspberry Pi OS Lite](https://www.raspberrypi.org/software/operating-systems/). We also recommend you create separate accounts for your standard user without sudo privileges and an admin account with sudo privileges. We have written a tutorial on our blog that covers our usual first time setup steps: [HEADLESS SETUP: basic configuration of a Raspberry Pi + hardened SECURITY](https://term7.info/intro-raspberry-pi/)
 
