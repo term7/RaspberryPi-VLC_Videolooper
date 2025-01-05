@@ -18,13 +18,13 @@ After the successful implementation of these instruction, when you boot your Ras
 
 ## SETUP
 
-- [01 - Prerequisites](#01---Prerequisites)
-- [02 - Setup unprivileged Workstation User](#02---Setup-unprivileged-Workstation-User)
-- [03 - Prepare Folders and Locations](#03---Prepare-Folders-and-Locations)
-- [04 - Setup USB Device Handler and Service](#04---Setup-USB-Device-Handler-and-Service)
-- [05 - VLC Autoplay Service](#05---VLC-Autoplay-Service)
-- [06 - VLC Autoplay Script](#06---VLC-Autoplay-Script)
-- [07 - Links and Resources](#07---Links-and-Resources)
+- [01 - Prerequisites](#01-Prerequisites)
+- [02 - Setup unprivileged Workstation User](#02-Setup-unprivileged-Workstation-User)
+- [03 - Prepare Folders and Locations](#03-Prepare-Folders-and-Locations)
+- [04 - Setup USB Device Handler and Service](#04-Setup-USB-Device-Handler-and-Service)
+- [05 - VLC Autoplay Service](#05-VLC-Autoplay-Service)
+- [06 - VLC Autoplay Script](#06-VLC-Autoplay-Script)
+- [07 - Links and Resources](#07-Links-and-Resources)
 
 
 # 01 - Prerequisites
