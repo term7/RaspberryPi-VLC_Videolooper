@@ -6,4 +6,4 @@ After=dev-%i.device
 [Service]
 Type=oneshot
 ExecStart=/home/admin/script/automount/usbmount /dev/%I
-ExecStop=/usr/bin/pmount /dev/%I
+ExecStop=/usr/bin/pumount /dev/%I && sync
