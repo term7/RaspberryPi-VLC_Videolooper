@@ -1,9 +1,12 @@
 [Unit]
-Description=Automount
+Description=Automount USB drives
 BindsTo=dev-%i.device
-After=dev-%i.device
+After=dev-%i.device systemd-udev-trigger.service systemd-udev-settle.service
 
 [Service]
 Type=oneshot
 ExecStart=/home/admin/script/automount/usbmount /dev/%I
-ExecStop=/usr/bin/pumount /dev/%I && sync
+ExecStop=sync && /usr/bin/pmount /dev/%I
+
+[Install]
+WantedBy=multi-user.target

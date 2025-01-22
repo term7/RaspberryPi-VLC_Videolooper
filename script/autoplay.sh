@@ -14,10 +14,10 @@ FILETYPES="-name *.mp4 -o -name *.mov -o -name *.mkv"
 # Playlist Options:
 Playlist_Options="-L --started-from-file --one-instance --playlist-enqueue"
 
-# Output Modules (edit and uncomment to add more options):
-# Video_Output="--deinterlace=0 --aspect-ratio=4:3 --no-autoscale --width=720 --height=576"
+# Output Modules (edit to add options):
 Video_Output=""
 
+# Audio Options:
 Audio_Output="--stereo-mode 1"
 
 # Interface Options:

@@ -96,14 +96,18 @@ Insert:
 
 ```
 [Unit]
-Description=Automount
+[Unit]
+Description=Automount USB drives
 BindsTo=dev-%i.device
-After=dev-%i.device
+After=dev-%i.device systemd-udev-trigger.service systemd-udev-settle.service
 
 [Service]
 Type=oneshot
 ExecStart=/home/admin/script/automount/usbmount /dev/%I
-ExecStop=/usr/bin/pumount /dev/%I && sync
+ExecStop=sync && /usr/bin/pmount /dev/%I
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 The executed script has to be very short, because udev does kill longer running scripts. Again, prepare the folder locations that we will use:<br>
@@ -209,10 +213,10 @@ FILETYPES="-name *.mp4 -o -name *.mov -o -name *.mkv"
 # Playlist Options:
 Playlist_Options="-L --started-from-file --one-instance --playlist-enqueue"
 
-# Output Modules (edit and uncomment to add more options):
-# Video_Output="--deinterlace=0 --aspect-ratio=4:3 --no-autoscale --width=720 --height=576"
+# Output Modules (edit to add options):
 Video_Output=""
 
+# Audio Options:
 Audio_Output="--stereo-mode 1"
 
 # Interface Options:
