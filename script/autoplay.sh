@@ -35,7 +35,7 @@ find "$USB" ! -iname ".*" -type f \( $FILETYPES \) 2>/dev/null >> "$PLAYLIST"
 
 # Play Playlist if Files Exist
 if [ -s "$PLAYLIST" ]; then
-    /usr/bin/vlc -I dummy -q $Audio_Output $Interface_Options $Playlist_Options "$PLAYLIST"
+    /usr/bin/vlc -I dummy -q $Video_Output $Audio_Output $Interface_Options $Playlist_Options "$PLAYLIST"
 else
     echo "No files found to play."
 fi
