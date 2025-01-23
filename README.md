@@ -172,6 +172,7 @@ WorkingDirectory=/home/looper
 User=looper
 Group=looper
 Environment="DISPLAY=:0"
+Environment="XDG_RUNTIME_DIR=/run/user/1000"
 ExecStart=/bin/sh /home/looper/Script/autoplay.sh
 
 [Install]
