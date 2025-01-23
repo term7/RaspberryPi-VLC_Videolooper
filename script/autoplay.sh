@@ -3,6 +3,8 @@
 # VLC OPTIONS:
 # View all possible options: vlc -H
 
+export XDG_RUNTIME_DIR=/run/user/1000
+
 export AUTOPLAY=/home/looper/Videos/autoplay
 export USB=/media/
 export PLAYLIST=/home/looper/Videos/playlist.m3u
