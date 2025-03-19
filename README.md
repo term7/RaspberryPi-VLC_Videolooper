@@ -96,7 +96,6 @@ Insert:
 
 ```
 [Unit]
-[Unit]
 Description=Automount USB drives
 BindsTo=dev-%i.device
 After=dev-%i.device systemd-udev-trigger.service systemd-udev-settle.service
