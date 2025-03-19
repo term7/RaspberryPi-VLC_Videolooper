@@ -18,23 +18,23 @@ After the successful implementation of these instruction, when you boot your Ras
 
 ## SETUP
 
-- [01. Prerequisites](#01.-prerequisites)
-- [02. Setup unprivileged Workstation User](#02.-setup-unprivileged-workstation-user)
-- [03. Prepare Folders and Locations](#03.-prepare-folders-and-locations)
-- [04. Setup USB Device Handler and Service](#04.-setup-usb-device-handler-and-service)
-- [05. VLC Autoplay Service](#05.-vlc-autoplay-service)
-- [06. VLC Autoplay Script](#06.-vlc-autoplay-script)
-- [07. Links and Resources](#07.-links-and-resources)
+- [01 Prerequisites](#01-prerequisites)
+- [02 Setup unprivileged Workstation User](#02-setup-unprivileged-workstation-user)
+- [03 Prepare Folders and Locations](#03-prepare-folders-and-locations)
+- [04 Setup USB Device Handler and Service](#04-setup-usb-device-handler-and-service)
+- [05 VLC Autoplay Service](#05-vlc-autoplay-service)
+- [06 VLC Autoplay Script](#06-vlc-autoplay-script)
+- [07 Links and Resources](#07-links-and-resources)
 
 
-# 01. Prerequisites
+# 01 Prerequisites
 
 We recommend you work with a clean and fully updated installation of [Raspberry Pi OS Lite](https://www.raspberrypi.org/software/operating-systems/). We also recommend you create separate accounts for your standard user without sudo privileges and an admin account with sudo privileges. We have written a tutorial on our blog that covers our usual first time setup steps: [HEADLESS SETUP: basic configuration of a Raspberry Pi + hardened SECURITY](https://term7.info/intro-raspberry-pi/)
 
 If you follow this tutorial first, installing the Videolooper will be easy.
 
 
-# 02. Setup unprivileged Workstation User
+# 02 Setup unprivileged Workstation User
 
 Often we have been using this Videolooper on a Raspberry Pi that also had to be reachable via SSH over the internet, which is why we set up an unprivileged user account. For this guide we use a standard user account called *looper* to run our autoplay script. Next we create an *admin* account that runs all privileged processes, including the installation of required software packages. This makes it easy to change all video settings in our standard user account without needing admin rights.
 
@@ -63,7 +63,7 @@ To douple-check that the group *sudo* is missing from the list of groups run thi
 `groups looper`
 
 
-# 03. Prepare Folders and Locations
+# 03 Prepare Folders and Locations
 
 Most steps during the installation require admin rights. But before we log into the *admin* account we create folder locations that will be used by our VLC Videolooper:
 
@@ -149,7 +149,7 @@ You can reboot your Raspberry Pi now and plug in a USB drive. After the reboot S
 
 If you see usb1 and its content, then your USB drive has been automatically mounted successfully and you are good to proceed! Otherwise retrace your previous steps and double-check your installation for mistakes.
 
-# 05. | VLC Autoplay Service
+# 05 VLC Autoplay Service
 
 Finally it is time to set up your Videolooper!
 
@@ -184,7 +184,7 @@ Finally, we enable the VLC autoplay service with the following command:
 
 Don't start the service yet. It will automatically start with the next reboot, but we have not yet created the VLC autoplay script!
 
-# 06. VLC Autoplay Script
+# 06 VLC Autoplay Script
 
 For the next steps, make sure you are looged into your standard user account: in this example *looper*. If you named your standard user differently, please make sure you adjust the system service script and the folder paths in the autoplay script accordingly. If you are still logged into your *admin* account, type the following command to log out:
 
@@ -254,7 +254,7 @@ Prepare some files on a USB media storage and/or use this command to transfer a 
 When the file transfer is finished, shutdown your Raspberry Pi. Then attach a screen to your Pi's HDMI port, place some video files on a USB media storage and plug it into your Raspberry Pi (if you want you can also just play from the internal autoplay folder). Connect power to boot it. After a short while it should automatically loop the video you transferred to the autoplay folder and/or the files on your USB media storage.
 
 
-# 07. Links and Resources
+# 07 Links and Resources
 
 Download and install Raspberry Pi OS:<br>
 [https://www.raspberrypi.org/software/operating-systems/](https://www.raspberrypi.org/software/operating-systems/)<br>
