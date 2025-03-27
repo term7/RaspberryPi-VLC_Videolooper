@@ -10,6 +10,9 @@ To setup this Videolooper, follow these instuctions step by step. Feel free to m
 
 We think it is fun to learn, which is why we decided to write a detailed guide instead. ;-)
 
+You can also find it on our website:
+[https://term7.info/simple-videolooper-based-on-a-raspberry-pi-and-vlc/](https://term7.info/simple-videolooper-based-on-a-raspberry-pi-and-vlc/)
+
 
 ### WHAT THIS VIDEOLOOPER DOES:
 
