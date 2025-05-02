@@ -197,7 +197,7 @@ sudo apt install vlc
 
 We again need to create a system service that starts out Videolooper after every reboot:
 ```
-sudo nano /lib/systemd/system/autoplay.service`
+sudo nano /lib/systemd/system/autoplay.service
 ```
 
 Insert:
