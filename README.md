@@ -317,3 +317,11 @@ Raspberry Pi Security:<br>
 VLC Command Line:<br>
 [https://wiki.videolan.org/VLC_command-line_help/](https://wiki.videolan.org/VLC_command-line_help/)<br>
 [https://wiki.videolan.org/Documentation:Command_line/](https://wiki.videolan.org/Documentation:Command_line/)
+
+### **MIRRORS**
+
+This repository is actively maintained on Codeberg:<br>
+https://codeberg.org/term7/RaspberryPi-VLC_Videolooper
+
+Changes are puhsed regularly to our Githoub Mirror:<br>
+https://github.com/term7/RaspberryPi-VLC_Videolooper
