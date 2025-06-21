@@ -323,5 +323,5 @@ VLC Command Line:<br>
 This repository is actively maintained on Codeberg:<br>
 https://codeberg.org/term7/RaspberryPi-VLC_Videolooper
 
-Changes are pushed regularly to our Githoub Mirror:<br>
+Changes are pushed regularly to our Github Mirror:<br>
 https://github.com/term7/RaspberryPi-VLC_Videolooper
